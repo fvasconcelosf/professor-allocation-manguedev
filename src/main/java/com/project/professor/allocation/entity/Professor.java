@@ -18,7 +18,7 @@ public class Professor {
 	@Column(unique = true, nullable = false, length = 11)
 	private String cpf;
 
-	@Column(name = "names", nullable = false, unique = true)
+	@Column(name = "name", nullable = false, unique = true)
 	private String name;
 
 	public Long getId() {

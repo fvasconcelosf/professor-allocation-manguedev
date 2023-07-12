@@ -1,6 +1,7 @@
 package com.project.professor.allocation.entity;
 
-import java.sql.Time;
+
+
 import java.time.DayOfWeek;
 import java.util.Date;
 
@@ -57,7 +58,7 @@ public class Allocation {
 			return start;
 		}
 
-		public void setStart(Time start) {
+		public void setStart(Date start) {
 			this.start = start;
 		}
 
@@ -65,7 +66,7 @@ public class Allocation {
 			return end;
 		}
 
-		public void setEnd(Time end) {
+		public void setEnd(Date end) {
 			this.end = end;
 		}
 }
