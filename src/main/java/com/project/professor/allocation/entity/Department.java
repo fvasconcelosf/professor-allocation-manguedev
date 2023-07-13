@@ -16,6 +16,8 @@ public class Department {
 		
 		@Column(name = "name", nullable = false, unique = true)
 		private String name;
+		
+		
 
 		public Long getId() {
 			return id;

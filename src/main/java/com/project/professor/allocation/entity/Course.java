@@ -17,6 +17,7 @@ public class Course {
 		
 	@Column(name = "name", unique = true, nullable = false)
 	private String name;
+	
 
 	public Long getId() {
 		return id;

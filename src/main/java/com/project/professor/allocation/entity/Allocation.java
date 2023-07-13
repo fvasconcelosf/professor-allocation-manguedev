@@ -1,7 +1,6 @@
 package com.project.professor.allocation.entity;
 
-
-
+import java.sql.Time;
 import java.time.DayOfWeek;
 import java.util.Date;
 
@@ -12,6 +11,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,41 +19,10 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Allocation")
 public class Allocation {
-<<<<<<< HEAD
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-=======
-	
-	
-	
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private Long id;
-		
-		@Enumerated(EnumType.STRING)
-		@Column(name = "day", nullable = false) 
-		private DayOfWeek day;
-		
-		@Temporal(TemporalType.TIME)
-		@Column(name = "start", nullable = false) 
-		private Date start;
-		
-		@Temporal(TemporalType.TIME)
-		@Column(name = "end", nullable = false) 
-		private Date end;
- 
- @ManyToOne(opcional = false)
- private Professor professor;
-
- public Professor getProfessor() {
-  return professor;
- }
-
- public void setProfessor (Professor professor) {
-  this.professor = professor;
- }
->>>>>>> main
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "day", nullable = false)
@@ -67,6 +36,20 @@ public class Allocation {
 	@Column(name = "end", nullable = false)
 	private Date end;
 
+	@ManyToOne(optional = false)
+	private Professor professor;
+	
+	@ManyToOne(optional = false)
+	private Course curso; 
+
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -75,21 +58,18 @@ public class Allocation {
 		this.id = id;
 	}
 
-<<<<<<< HEAD
 	public DayOfWeek getDay() {
 		return day;
 	}
-=======
-		public void setStart(Date start) {
-			this.start = start;
-		}
->>>>>>> main
+
+	public void setStart(Date start) {
+		this.start = start;
+	}
 
 	public void setDay(DayOfWeek day) {
 		this.day = day;
 	}
 
-<<<<<<< HEAD
 	public Date getStart() {
 		return start;
 	}
@@ -105,9 +85,9 @@ public class Allocation {
 	public void setEnd(Time end) {
 		this.end = end;
 	}
-=======
-		public void setEnd(Date end) {
-			this.end = end;
-		}
->>>>>>> main
+
+	public void setEnd(Date end) {
+		this.end = end;
+	}
+
 }
