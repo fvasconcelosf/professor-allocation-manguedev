@@ -37,6 +37,17 @@ public class Allocation {
 		@Temporal(TemporalType.TIME)
 		@Column(name = "end", nullable = false) 
 		private Date end;
+ 
+ @ManyToOne(opcional = false)
+ private Professor professor;
+
+ public Professor getProfessor() {
+  return professor;
+ }
+
+ public void setProfessor (Professor professor) {
+  this.professor = professor;
+ }
 
 		public Long getId() {
 			return id;
