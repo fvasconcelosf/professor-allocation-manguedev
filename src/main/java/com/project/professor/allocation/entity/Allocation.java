@@ -1,6 +1,7 @@
 package com.project.professor.allocation.entity;
 
-import java.sql.Time;
+
+
 import java.time.DayOfWeek;
 import java.util.Date;
 
@@ -18,6 +19,11 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Allocation")
 public class Allocation {
+<<<<<<< HEAD
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+=======
 	
 	
 	
@@ -36,36 +42,72 @@ public class Allocation {
 		@Temporal(TemporalType.TIME)
 		@Column(name = "end", nullable = false) 
 		private Date end;
+ 
+ @ManyToOne(opcional = false)
+ private Professor professor;
 
-		public Long getId() {
-			return id;
-		}
+ public Professor getProfessor() {
+  return professor;
+ }
 
-		public void setId(Long id) {
-			this.id = id;
-		}
+ public void setProfessor (Professor professor) {
+  this.professor = professor;
+ }
+>>>>>>> main
 
-		public DayOfWeek getDay() {
-			return day;
-		}
+	@Enumerated(EnumType.STRING)
+	@Column(name = "day", nullable = false)
+	private DayOfWeek day;
 
-		public void setDay(DayOfWeek day) {
-			this.day = day;
-		}
+	@Temporal(TemporalType.TIME)
+	@Column(name = "start", nullable = false)
+	private Date start;
 
-		public Date getStart() {
-			return start;
-		}
+	@Temporal(TemporalType.TIME)
+	@Column(name = "end", nullable = false)
+	private Date end;
 
-		public void setStart(Time start) {
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+<<<<<<< HEAD
+	public DayOfWeek getDay() {
+		return day;
+	}
+=======
+		public void setStart(Date start) {
 			this.start = start;
 		}
+>>>>>>> main
 
-		public Date getEnd() {
-			return end;
-		}
+	public void setDay(DayOfWeek day) {
+		this.day = day;
+	}
 
-		public void setEnd(Time end) {
+<<<<<<< HEAD
+	public Date getStart() {
+		return start;
+	}
+
+	public void setStart(Time start) {
+		this.start = start;
+	}
+
+	public Date getEnd() {
+		return end;
+	}
+
+	public void setEnd(Time end) {
+		this.end = end;
+	}
+=======
+		public void setEnd(Date end) {
 			this.end = end;
 		}
+>>>>>>> main
 }
