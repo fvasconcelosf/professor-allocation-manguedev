@@ -20,6 +20,12 @@ import javax.persistence.TemporalType;
 @Table(name = "Allocation")
 public class Allocation {
 
+	@Override
+	public String toString() {
+		return "Allocation [id=" + id + ", day=" + day + ", start=" + start + ", end=" + end + ", professor="
+				+ professor + ", curso=" + course + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -40,7 +46,7 @@ public class Allocation {
 	private Professor professor;
 	
 	@ManyToOne(optional = false)
-	private Course curso; 
+	private Course course; 
 
 	public Professor getProfessor() {
 		return professor;
