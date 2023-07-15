@@ -13,10 +13,15 @@ import javax.persistence.Table;
 @Table(name = "Professor")
 public class Professor {
 
+	@Override
+	public String toString() {
+		return "Professor [id=" + id + ", cpf=" + cpf + ", name=" + name + ", depart=" + depart + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(unique = true, nullable = false, length = 11)
 	private String cpf;
 
@@ -25,8 +30,8 @@ public class Professor {
 
 	@JoinColumn(nullable = false)
 	@ManyToOne(optional = false)
-	private Department depart; 
-	
+	private Department depart;
+
 	public Long getId() {
 		return id;
 	}

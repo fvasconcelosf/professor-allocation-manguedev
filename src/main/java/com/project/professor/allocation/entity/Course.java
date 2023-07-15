@@ -10,6 +10,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Course")
 public class Course {
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", name=" + name + "]";
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,8 +38,4 @@ public class Course {
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "Course [id=" + id + ", name=" + name + "]";
-	}
 }
