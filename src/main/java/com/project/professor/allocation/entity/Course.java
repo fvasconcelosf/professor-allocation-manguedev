@@ -10,11 +10,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Course")
 public class Course {
-	
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", name=" + name + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-		
+
 	@Column(name = "name", unique = true, nullable = false)
 	private String name;
 

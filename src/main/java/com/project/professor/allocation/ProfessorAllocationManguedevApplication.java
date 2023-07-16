@@ -9,5 +9,5 @@ public class ProfessorAllocationManguedevApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProfessorAllocationManguedevApplication.class, args);
 	}
-
+//ESSE CÓDIGO SERVE PARA INICIALIZAR O BACK_END
 }
