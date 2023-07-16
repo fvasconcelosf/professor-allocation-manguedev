@@ -12,7 +12,6 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 
 import com.project.professor.allocation.entity.Allocation;
-import com.project.professor.allocation.entity.Department;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
@@ -22,6 +21,20 @@ public class AllocationRepositoryTest {
 
 	@Autowired
 	AllocationRepository allocationRepository;
+
+	@Test // pesquisa detalhada ao banco, "find" criado no repositório da entidade.
+	public void findByCourseId() {
+		Allocation alloCourse = new Allocation();
+		alloCourse.setId(1L);
+		System.out.println(alloCourse);
+	}
+
+	@Test // pesquisa detalhada ao banco, "find" criado no repositório da entidade.
+	public void findByProfessorId() {
+		Allocation alloProf = new Allocation();
+		alloProf.setId(1L);
+		System.out.println(alloProf);
+	}
 
 	@Test
 	void findAll() { // Achar tudo que tem em allocation
@@ -37,11 +50,12 @@ public class AllocationRepositoryTest {
 		System.out.println(alloby);
 	}
 
-	//@Test
-	//void update() { // atualizar
-		//Allocation alloUp = new Allocation();
-		//Allocation alloUpSay = allocationRepository.save(alloUp);
-		//System.out.println(alloUpSay);
-
+	// @Test
+	// void update() { // atualizar
+	// Allocation allo1 = new Allocation();
+	// allo1.setDay("20:00:00");
+	// allo1.setId(1l);
+	// Allocation allo2 = allocationRepository.save(allo1);
+	// System.out.println(allo2);
+	// }
 }
-
