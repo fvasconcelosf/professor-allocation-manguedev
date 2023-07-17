@@ -1,5 +1,8 @@
 package com.project.professor.allocation.repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +21,8 @@ import com.project.professor.allocation.entity.Allocation;
 @Rollback(false)
 @TestPropertySource(locations = "classpath:application.properties")
 public class AllocationRepositoryTest {
+	
+	 SimpleDateFormat sdf = new SimpleDateFormat("HH:mmZ");
 
 	@Autowired
 	AllocationRepository allocationRepository;
@@ -48,7 +53,46 @@ public class AllocationRepositoryTest {
 		Optional<Allocation> allocationById = allocationRepository.findById(id);
 		Allocation alloby = allocationById.orElse(null);
 		System.out.println(alloby);
-	}
+	  }
+
+    @Test
+    public void save_create() throws ParseException {
+        // Arrange
+        Allocation allocation = new Allocation();
+        allocation.setId(null);
+        allocation.setDay(DayOfWeek.SUNDAY);
+        allocation.setStart(sdf.parse("12:10-0000"));
+        allocation.setEnd(sdf.parse("21:00-0000"));
+        allocation.setProfessorId(1L);
+        allocation.setCourseId(1L);
+
+        allocation = allocationRepository.save(allocation);
+
+        System.out.println(allocation);
+    }
+    @Test
+    public void save_update() throws ParseException {
+        // Arrange
+        Allocation allocation = new Allocation();
+        allocation.setId(1L);
+        allocation.setDay(DayOfWeek.MONDAY);
+        allocation.setStart(sdf.parse("13:00-0300"));
+        allocation.setEnd(sdf.parse("19:00-0300"));
+        allocation.setProfessorId(1L);
+        allocation.setCourseId(1L);
+    
+    }
+	
+    @Test
+    public void deleteById() {
+        Long id = 1L;
+    }
+
+    @Test
+    public void deleteAll() {
+        allocationRepository.deleteAllInBatch();
+    }
+}
 
 	// @Test
 	// void update() { // atualizar
@@ -58,4 +102,4 @@ public class AllocationRepositoryTest {
 	// Allocation allo2 = allocationRepository.save(allo1);
 	// System.out.println(allo2);
 	// }
-}
+
