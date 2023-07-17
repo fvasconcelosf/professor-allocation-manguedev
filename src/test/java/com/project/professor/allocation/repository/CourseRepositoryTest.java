@@ -24,20 +24,20 @@ public class CourseRepositoryTest {
 
 	// método de teste nunca vai ter retorno e não tem parâmetro
 	@Test
-	void findAll() {
+	public void findAll() {
 		List<Course> courses = courseRepository.findAll();
 		System.out.println(courses);
 	}
 
 	@Test
-	void findById() {
+	public void findById() {
 		Long id = 1l;
 		Optional<Course> course = courseRepository.findById(id);
 		System.out.println(course);
 	}
 
 	@Test
-	void create() {
+	public void create() {
 		Course course1 = new Course();
 		course1.setName("CourseEAD");
 		course1.setId(null);

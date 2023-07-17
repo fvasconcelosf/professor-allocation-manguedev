@@ -51,8 +51,41 @@ public class Allocation {
 	@ManyToOne(optional = false)
 	private Course course; 
 	
+<<<<<<< HEAD
 	@Column (name = "course_id", nullable=false)
 	private Long courseId;
+=======
+	@Column( name ="professor_id", nullable = false)
+	private Long CourseId;
+	
+	@Column( name ="professor_id", nullable = false)
+	private Long ProfessorId;
+
+	
+	public Long getCourseId() {
+		return CourseId;
+	}
+
+	public void setCourseId(Long courseId) {
+		CourseId = courseId;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public Long getProfessorId() {
+		return ProfessorId;
+	}
+
+	public void setProfessorId(Long professorId) {
+		ProfessorId = professorId;
+	}
+>>>>>>> BranchMulilo
 
 	public Professor getProfessor() {
 		return professor;
