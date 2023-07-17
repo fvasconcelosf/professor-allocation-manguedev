@@ -24,8 +24,9 @@ public class ProfessorRespositoryTest {
 			
 		@Test 
 		public void findAll() {
-			List<Professor> professorList = professorRepository.findAll();
+			List<Professor> professors = professorRepository.findAll();	
 			
+			System.out.println(professors);
 	}
 		
 		@Test 
