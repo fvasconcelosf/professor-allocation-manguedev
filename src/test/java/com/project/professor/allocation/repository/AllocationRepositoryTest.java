@@ -86,6 +86,8 @@ public class AllocationRepositoryTest {
     @Test
     public void deleteById() {
         Long id = 1L;
+        
+        System.out.println(id);
     }
 
     @Test
