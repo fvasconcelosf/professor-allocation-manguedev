@@ -22,11 +22,12 @@ public class ProfessorRespositoryTest {
 		@Autowired
 		ProfessorRepository professorRepository; 
 			
-//		@Test 
-//		public void findAll() {
-//			List<Professor> professorList = professorRepository.findAll();
-//			
-//	}
+		@Test 
+		public void findAll() {
+			List<Professor> professors = professorRepository.findAll();	
+			
+			System.out.println(professors);
+	}
 		
 		@Test 
 		 void findById() {

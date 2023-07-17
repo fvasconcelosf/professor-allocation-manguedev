@@ -68,6 +68,7 @@ public class AllocationRepositoryTest {
 
         allocation = allocationRepository.save(allocation);
 
+
         System.out.println(allocation);
     }
     @Test
@@ -86,8 +87,6 @@ public class AllocationRepositoryTest {
     @Test
     public void deleteById() {
         Long id = 1L;
-        
-        System.out.println(id);
     }
 
     @Test
@@ -96,5 +95,8 @@ public class AllocationRepositoryTest {
     }
 }
 
-	
 
+
+
+       
+    
