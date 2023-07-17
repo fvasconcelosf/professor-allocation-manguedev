@@ -67,7 +67,7 @@ public class AllocationRepositoryTest {
         allocation.setCourseId(1L);
 
         allocation = allocationRepository.save(allocation);
-<<<<<<< HEAD
+
 
         System.out.println(allocation);
     }
@@ -95,44 +95,8 @@ public class AllocationRepositoryTest {
     }
 }
 
-	// @Test
-	// void update() { // atualizar
-	// Allocation allo1 = new Allocation();
-	// allo1.setDay("20:00:00");
-	// allo1.setId(1l);
-	// Allocation allo2 = allocationRepository.save(allo1);
-	// System.out.println(allo2);
-	// }
-=======
 
-        System.out.println(allocation);
-    }
-    @Test
-    public void save_update() throws ParseException {
-        // Arrange
-        Allocation allocation = new Allocation();
-        allocation.setId(1L);
-        allocation.setDay(DayOfWeek.MONDAY);
-        allocation.setStart(sdf.parse("13:00-0300"));
-        allocation.setEnd(sdf.parse("19:00-0300"));
-        allocation.setProfessorId(1L);
-        allocation.setCourseId(1L);
+
+
+       
     
-    }
-	
-    @Test
-    public void deleteById() {
-        Long id = 1L;
-        
-        System.out.println(id);
-    }
-
-    @Test
-    public void deleteAll() {
-        allocationRepository.deleteAllInBatch();
-    }
-}
-
-	
->>>>>>> BranchMulilo
-
