@@ -66,11 +66,9 @@ public class AllocationController {
 		}
 	}
 
-	@ApiResponses({ @ApiResponse(responseCode = "200", description = "alocação atualizada com sucesso! "),
-
-			@ApiResponse(responseCode = "400", description = "horario de inicio deve estar menor que o de fim!", content = @Content),
-
-			@ApiResponse(responseCode = "400", description = "alocação não encontrada", content = @Content) })
+	@ApiResponses({ @ApiResponse(responseCode = "200", description = "alocação atualizada com sucesso! "),		
+		@ApiResponse(responseCode = "400", description = "horario de inicio deve estar menor que o de fim!", content = @Content),
+		@ApiResponse(responseCode = "400", description = "alocação não encontrada", content = @Content) })
 
 	@PutMapping(path = "/{allocation_id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Allocation> update(Long id, @RequestBody Allocation allocation) {
