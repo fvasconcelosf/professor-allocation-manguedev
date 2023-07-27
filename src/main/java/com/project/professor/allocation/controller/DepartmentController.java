@@ -23,7 +23,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "Departments Contoller")
+@Tag(name = "Departments Contoller.")
 @RestController
 @RequestMapping(path = "/departments")
 public class DepartmentController {
@@ -35,7 +35,10 @@ public class DepartmentController {
 		this.departmentService = departmentService;
 	}
 
-	@Operation(summary = "Buscar um departamento pelo id")
+	@Operation(summary = "Buscar um departamento pelo id.")
+	@ApiResponses({@ApiResponse(responseCode = "200", description = "Departmento Atualizado"),
+				   @ApiResponse(responseCode ="400", description = "BAD REQUEST", content = @Content),
+				   @ApiResponse(responseCode = "404", description = "Departmento não encontrado", content = @Content )})
 	@GetMapping(path = "/{department_id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Department> findById(@PathVariable(name = "department_id") Long id) {
 		Department department = departmentService.findById(id);
@@ -43,18 +46,18 @@ public class DepartmentController {
 				: new ResponseEntity<>(department, HttpStatus.OK);
 	}
 
-	@Operation(summary = "Achar todos os departamentos")
+	@Operation(summary = "Achar todos os departamentos.")
 	@ApiResponses(@ApiResponse(responseCode = "200", description = "ok"))
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Department>> findAll() {
-		List<Department> departments = departmentService.findAll(null);
+	public ResponseEntity<List<Department>> findAll(String name) {
+		List<Department> departments = departmentService.findAll(name);
 		return new ResponseEntity<List<Department>>(departments, HttpStatus.OK);
 	}
 
-	@ApiResponses({ @ApiResponse(responseCode = "200", description = "Departamento Criado"),
-			@ApiResponse(responseCode = "400", description = "BAD REQUEST") })
+	@ApiResponses({ @ApiResponse(responseCode = "200", description = "Departamento Criado."),
+			@ApiResponse(responseCode = "400", description = "BAD REQUEST.") })
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Department> save(@RequestBody Department department) {
+	public ResponseEntity<Department> create(@RequestBody Department department) {
 		try {
 			department = departmentService.create(department);
 			return new ResponseEntity<>(department, HttpStatus.OK);
@@ -63,9 +66,9 @@ public class DepartmentController {
 		}
 	}
 
-	@ApiResponses({@ApiResponse(responseCode = "200", description = "Departmento Atualizado"),
-				   @ApiResponse(responseCode ="400", description = "BAD REQUEST", content = @Content),
-				   @ApiResponse(responseCode = "400", description = "Departmento não encontrado", content = @Content )})
+	@ApiResponses({@ApiResponse(responseCode = "200", description = "Departmento Atualizado."),
+				   @ApiResponse(responseCode ="400", description = "BAD REQUEST.", content = @Content),
+				   @ApiResponse(responseCode = "404", description = "Departmento não encontrado.", content = @Content )})
 	@PutMapping(path = "/{department_id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Department> update(@PathVariable(name = "department_id") Long id, @RequestBody Department department) {
 		department.setId(id);
@@ -78,12 +81,14 @@ public class DepartmentController {
 		}
 	}
 
+	@Operation (summary = "deletar um departamento.")
 	@DeleteMapping(path = "/{department_id}")
-	public ResponseEntity<Void> deleteByid(Long id) {
+	public ResponseEntity<Void> deleteByid(@PathVariable(name = "allocation_id") Long id) {
 		departmentService.deleteById(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
+	@Operation (summary = "deletar todos os departamentos.")
 	@DeleteMapping
 	public ResponseEntity<Void> deleteAll() {
 		departmentService.deleteAll();
