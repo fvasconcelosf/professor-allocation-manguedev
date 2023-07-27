@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.Schema.AccessMode;
+
 @Entity
 @Table(name = "Professor")
 public class Professor {
@@ -27,7 +30,8 @@ public class Professor {
 
 	@Column(name = "name", nullable = false, unique = true)
 	private String name;
-
+	
+	@Schema(allOf = Department.class, accessMode = AccessMode.READ_ONLY)
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "department_id", nullable = false)
 	private Department department;
