@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.professor.allocation.entity.Allocation;
 import com.project.professor.allocation.entity.Course;
+import com.project.professor.allocation.entity.Professor;
 import com.project.professor.allocation.repository.AllocationRepository;
 import com.project.professor.allocation.repository.CourseRepository;
 
@@ -15,10 +16,10 @@ public class AllocationService {
 
 	private AllocationRepository allocationRepository;
 	private ProfessorService professorService;
-	private CourseRepository courseService;
+	private CourseService courseService;
 
 	public AllocationService(AllocationRepository allocationRepository, ProfessorService professorService,
-			CourseRepository courseService) {
+			CourseService courseService) {
 		super();
 		this.allocationRepository = allocationRepository;
 		this.professorService = professorService;
@@ -57,25 +58,29 @@ public class AllocationService {
 	}
 
 	public void deleteById(Long id) {
-		if (courseService.existsById(id)) {
-			courseService.deleteById(id);
+		if (allocationRepository.existsById(id)) {
+			allocationRepository.deleteById(id);
 		}
 	}
 
 	public void deleteAll() {
-		courseService.deleteAllInBatch();
+		allocationRepository.deleteAll();
 	}
 
 	public Allocation saveInternal(Allocation allocation) {
-
-//
-//		Long professorId = allocation.getProfessor().getId();
-//		allocation.setProfessor(professorService.getProfessorById(professorId));
-//
-//		Long courseId = allocation.getCourse().getId();
-//		allocation.setCourse(courseService.getCourseById(courseId));
-
-		return allocation;
+		
+		Allocation allo = allocationRepository.save(allocation);
+		
+		Long professorId = allo.getProfessor().getId();
+		Professor professor = professorService.findById(professorId);
+		allo.setProfessor(professor);
+		
+		Long courseId = allo.getCourse().getId();
+		Course course = courseService.findById(courseId);
+		allo.setCourse(course);
+		
+		
+		return null;
 	}
 
 }
