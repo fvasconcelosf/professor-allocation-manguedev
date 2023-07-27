@@ -1,6 +1,5 @@
 package com.project.professor.allocation.entity;
 
-import java.sql.Time;
 import java.time.DayOfWeek;
 import java.util.Date;
 
@@ -16,6 +15,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 @Entity
 @Table(name = "Allocation")
 public class Allocation {
@@ -27,6 +29,7 @@ public class Allocation {
 	}
 
 	@Id
+	@JsonProperty(access = Access.READ_ONLY)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
@@ -45,21 +48,19 @@ public class Allocation {
 	@ManyToOne(optional = false)
 	private Professor professor;
 
-	@Column(name = "professor_id", nullable = false)
-	private Long professorId;
-
-	@Column(name = "course_id", nullable = false)
-	private Long courseId;
-
 	@ManyToOne(optional = false)
 	private Course course;
 
-	public Professor getProfessor() {
-		return professor;
+	public void setIdProfessor(Long professorId) {
+		Professor professor = new Professor();
+		professor.setId(professorId);
+		this.setProfessor(professor);
 	}
 
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
+	public void setIdCourse(Long courseId) {
+		Course course = new Course();
+		course.setId(courseId);
+		this.setCourse(course);
 	}
 
 	public Long getId() {
@@ -74,10 +75,6 @@ public class Allocation {
 		return day;
 	}
 
-	public void setStart(Date start) {
-		this.start = start;
-	}
-
 	public void setDay(DayOfWeek day) {
 		this.day = day;
 	}
@@ -86,7 +83,7 @@ public class Allocation {
 		return start;
 	}
 
-	public void setStart(Time start) {
+	public void setStart(Date start) {
 		this.start = start;
 	}
 
@@ -94,20 +91,16 @@ public class Allocation {
 		return end;
 	}
 
-	public void setEnd(Time end) {
-		this.end = end;
-	}
-
 	public void setEnd(Date end) {
 		this.end = end;
 	}
 
-	public Long getProfessorId() {
-		return professorId;
+	public Professor getProfessor() {
+		return professor;
 	}
 
-	public void setProfessorId(Long professorId) {
-		this.professorId = professorId;
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 
 	public Course getCourse() {
@@ -116,14 +109,6 @@ public class Allocation {
 
 	public void setCourse(Course course) {
 		this.course = course;
-	}
-
-	public Long getCourseId() {
-		return courseId;
-	}
-
-	public void setCourseId(Long courseId) {
-		this.courseId = courseId;
 	}
 
 }

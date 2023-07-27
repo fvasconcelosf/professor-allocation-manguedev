@@ -9,6 +9,13 @@ import com.project.professor.allocation.entity.Course;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
+<<<<<<< HEAD
 	List <Course>findByName (String name);
+=======
+	List<Course> findByNameContainingIgnoreCase(String name);
 
+	Course getCourseById(Long courseId);
+>>>>>>> BranchMulilo
+
+	
 }

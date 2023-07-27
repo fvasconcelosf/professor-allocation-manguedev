@@ -1,7 +1,7 @@
 package com.project.professor.allocation.repository;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
+import java.sql.Time;
 import java.time.DayOfWeek;
 import java.util.List;
 import java.util.Optional;
@@ -21,8 +21,6 @@ import com.project.professor.allocation.entity.Allocation;
 @Rollback(false)
 @TestPropertySource(locations = "classpath:application.properties")
 public class AllocationRepositoryTest {
-	
-	 SimpleDateFormat sdf = new SimpleDateFormat("HH:mmZ");
 
 	@Autowired
 	AllocationRepository allocationRepository;
@@ -53,6 +51,7 @@ public class AllocationRepositoryTest {
 		Optional<Allocation> allocationById = allocationRepository.findById(id);
 		Allocation alloby = allocationById.orElse(null);
 		System.out.println(alloby);
+<<<<<<< HEAD
 	  }
 
     @Test
@@ -95,9 +94,48 @@ public class AllocationRepositoryTest {
         allocationRepository.deleteAllInBatch();
     }
 }
+=======
+	}
 
+	@Test
+	public void create() {
+>>>>>>> BranchMulilo
 
+		Allocation allocation = new Allocation();
+		allocation.setId(null);
+		allocation.setDay(DayOfWeek.SUNDAY);
+		allocation.setStart(Time.valueOf("20:00:00"));
+		allocation.setEnd(Time.valueOf("21:00:00"));
+		allocation.setIdProfessor(1L);
+		allocation.setIdCourse(1L);
 
+		allocation = allocationRepository.save(allocation);
 
-       
-    
+		System.out.println(allocation);
+	}
+
+	@Test
+	public void update() {
+
+		Allocation allocation = new Allocation();
+		allocation.setId(1L);
+		allocation.setDay(DayOfWeek.MONDAY);
+		allocation.setStart(Time.valueOf("13:00:00"));
+		allocation.setEnd(Time.valueOf("19:00:00"));
+		allocation.setIdProfessor(1L);
+		allocation.setIdCourse(1L);
+
+	}
+
+	@Test
+	public void deleteById() {
+		Long id = 1l;
+
+		allocationRepository.deleteById(id);
+	}
+
+	@Test
+	public void deleteAll() {
+		allocationRepository.deleteAllInBatch();
+	}
+}
