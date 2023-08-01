@@ -72,7 +72,7 @@ public class ProfessorRespositoryTest {
 		professor.setId(1L);
 		professor.setCpf("111.111.111-11");
 		professor.setName("murilo");
-		professor.setDepartament(department1);
+		professor.setDepartment(department1);
 
 	}
 
