@@ -41,7 +41,7 @@ public class AllocationController {
 			@ApiResponse(responseCode = "404", description = "Não encontrado", content = @Content) })
 	public ResponseEntity<Allocation> findById(@PathVariable(name = "allocation_id") Long id) {
 		Allocation allocation = allocationService.findById(id);
-		return allocation == null ? new ResponseEntity<>(HttpStatus.OK)
+		return allocation == null ? new ResponseEntity<>(HttpStatus.NOT_FOUND)
 				: new ResponseEntity<>(allocation, HttpStatus.OK);
 	}
 
@@ -79,7 +79,7 @@ public class AllocationController {
     	@ApiResponse(responseCode = "400", description = "Bad Request.", content = @Content)
     })
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Allocation> create(Allocation allocation) {
+	public ResponseEntity<Allocation> create(@RequestBody Allocation allocation) {
 		try {
 			allocation = allocationService.create(allocation);
 			return new ResponseEntity<>(allocation, HttpStatus.CREATED);

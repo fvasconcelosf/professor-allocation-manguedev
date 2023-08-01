@@ -29,7 +29,7 @@ public class DepartmentService {
 	}
 
 	public List<Department> findAll(String name) {
-		return name == null ? departmentRepository.findAll() : departmentRepository.findByNameIgnoreCase(name);
+		return name == null ? departmentRepository.findAll() : departmentRepository.findByNameContainingIgnoreCase(name);
 	}
 
 	public Department create(Department department) {

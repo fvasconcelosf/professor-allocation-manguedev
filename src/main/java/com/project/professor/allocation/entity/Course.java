@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "Course")
 public class Course {
@@ -15,6 +17,7 @@ public class Course {
 		return "Course [id=" + id + ", name=" + name + "]";
 	}
 
+	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

@@ -13,7 +13,7 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
 
 
-	List <Course>findByName (String name);
+
 
 	List<Course> findByNameContainingIgnoreCase(String name);
 

@@ -32,7 +32,7 @@ public class ProfessorService {
 	}
 
 	public List<Professor> findAll(String name) {
-		return name == null ? professorRepository.findAll() : professorRepository.findByNameContainingIgnoreCase(null);
+		return name == null ? professorRepository.findAll() : professorRepository.findByNameContainingIgnoreCase(name);
 	}
 
 	public Professor create(Professor professor) {
@@ -59,7 +59,7 @@ public class ProfessorService {
 		Professor professorSave = professorRepository.save(professor);
 		Long departmentId = professorSave.getDepartment().getId();
 		Department department = departmentService.findById(departmentId);
-		professorSave.setDepartament(department);
+		professorSave.setDepartment(department);
 
 		return professorSave;
 

@@ -1,5 +1,6 @@
 package com.project.professor.allocation.entity;
 
+import java.sql.Time;
 import java.time.DayOfWeek;
 import java.util.Date;
 
@@ -12,11 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.Schema.AccessMode;
 
 @Entity
 @Table(name = "Allocation")
@@ -37,17 +39,21 @@ public class Allocation {
 	@Column(name = "day", nullable = false)
 	private DayOfWeek day;
 
-	@Temporal(TemporalType.TIME)
+	@Schema(example = "19:00:00", type = "string")
 	@Column(name = "start", nullable = false)
-	private Date start;
+	private Time start;
 
-	@Temporal(TemporalType.TIME)
+	@Schema(example = "22:00:00", type = "string")
 	@Column(name = "end", nullable = false)
-	private Date end;
+	private Time end;
 
+	@Schema(allOf = Professor.class, accessMode = AccessMode.READ_ONLY)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@ManyToOne(optional = false)
 	private Professor professor;
 
+	@Schema(allOf = Course.class, accessMode = AccessMode.READ_ONLY)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	@ManyToOne(optional = false)
 	private Course course;
 
@@ -83,7 +89,7 @@ public class Allocation {
 		return start;
 	}
 
-	public void setStart(Date start) {
+	public void setStart(Time start) {
 		this.start = start;
 	}
 
@@ -91,7 +97,7 @@ public class Allocation {
 		return end;
 	}
 
-	public void setEnd(Date end) {
+	public void setEnd(Time end) {
 		this.end = end;
 	}
 

@@ -86,7 +86,7 @@ public class AllocationService {
 		allo.setCourse(course);
 		
 		
-		return null;
+		return allo;
 	}
 
 }
