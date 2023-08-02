@@ -9,7 +9,6 @@ import com.project.professor.allocation.entity.Allocation;
 import com.project.professor.allocation.entity.Course;
 import com.project.professor.allocation.entity.Professor;
 import com.project.professor.allocation.repository.AllocationRepository;
-import com.project.professor.allocation.repository.CourseRepository;
 
 @Service
 public class AllocationService {
